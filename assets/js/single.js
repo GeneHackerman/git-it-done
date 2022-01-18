@@ -3,7 +3,6 @@ var getRepoIssues = function(repo) {
 
     fetch(apiUrl);
 
-    console.log(repo);
 };
 
 getRepoIssues("facebook/react");
