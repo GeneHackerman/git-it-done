@@ -17,8 +17,6 @@ var formSubmitHandler = function(event) {
         alert("Please enter a GitHub username");
     }
 
-
-    console.log(event);
 };
 
 
