@@ -1,5 +1,22 @@
+var repoNameEl = document.querySelector("#repo-name");
 var issueContainerEl = document.querySelector("#issues-container");
 var limitWarningEl = document.querySelector("#limit-warning");
+
+var getRepoName = function() {
+    // grab repo name from url query string
+    var queryString = document.location.search;
+    var repoName = queryString.split("=")[1];
+
+        if(repoName) {
+            // display repo name on the page
+            repoNameEl.textContent = repoName;
+            
+            getRepoIssues(repoName);
+        } else {
+            // if no repo name was given, redirect to the homepage
+            document.location.replace("./index.html");
+        }
+};
 
 
 // will retrieve array of issues
@@ -15,15 +32,14 @@ var getRepoIssues = function(repo) {
 
                 // check if api has paginated issues
                 if (response.headers.get("Link")) {
-                    console.log("repo has more than 30 issues");
-                }
-                displayWarning(repo); 
+                    displayWarning(repo);
+                }                
             });
         } else {
-            alert("There was a problem with your request!");
+            // if not successful, redirect to homepage
+            document.location.replace("./index.html");
         }
     });
-
 };
 
 // displays all issues of repo
@@ -60,6 +76,8 @@ var displayIssues = function(issues) {
 
         // append to container
         issueEl.appendChild(typeEl);
+
+        // append to dom
         issueContainerEl.appendChild(issueEl);
     }
 };
@@ -78,4 +96,5 @@ var displayWarning = function(repo) {
     limitWarningEl.appendChild(linkEl);
 };
 
-getRepoIssues("genehackerman/robot-gladiators");
+
+getRepoName();
