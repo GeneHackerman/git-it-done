@@ -60,6 +60,23 @@ var getUserRepos = function(user) {
 }
 
 
+var getFeaturedRepos = function(language) {
+    var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues";
+
+    fetch(apiUrl).then(function(response) {
+        // request was successful
+        if (response.ok) {
+            response.json().then(function(data) {
+                displayRepos(data.times, language);
+            });            
+        } else {
+            alert("Error: " + response.statusText);
+        }
+    });
+};
+
+
+
 // displays the repo and open/closed issues
 var displayRepos = function (repos, searchTerm) {
     // check if API returned any repos
@@ -106,19 +123,6 @@ var displayRepos = function (repos, searchTerm) {
     }
 };
 
-var getFeaturedRepos = function(language) {
-    var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues";
-
-    fetch(apiUrl).then(function(response) {
-        if (response.ok) {
-            response.json().then(function(data) {
-                displayRepos(data.times, language);
-            });            
-        } else {
-            alert('Error: GitHub User Not Found');
-        }
-    });
-};
 
 
 // listens for the click event
