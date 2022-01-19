@@ -24,6 +24,17 @@ var formSubmitHandler = function(event) {
 
 };
 
+var buttonClickHandler = function(event) {
+    var language = event.target.getAttribute("data-language");
+        if (language) {
+            getFeaturedRepos(language);
+
+            // clear old content
+            repoContainerEl.textContent = "";
+        }
+    console.log(language);
+};
+
 // this function will return the user repo in JSON format
 var getUserRepos = function(user) {
     // format the github api url
@@ -107,17 +118,6 @@ var getFeaturedRepos = function(language) {
             alert('Error: GitHub User Not Found');
         }
     });
-};
-
-var buttonClickHandler = function(event) {
-    var language = event.target.getAttribute("data-language");
-        if (language) {
-            getFeaturedRepos(language);
-
-            // clear old content
-            repoContainerEl.textContent = "";
-        }
-    console.log(language);
 };
 
 
