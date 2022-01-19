@@ -43,7 +43,6 @@ var getUserRepos = function(user) {
     .catch(function(error) {
         // Notice this '.catch()' getting chained onto the end of the '.then()' method
         alert("Unable to connect to GitHub");
-        console.log(error);
     });
 }
 
