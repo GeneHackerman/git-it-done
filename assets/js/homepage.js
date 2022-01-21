@@ -32,7 +32,6 @@ var buttonClickHandler = function(event) {
             // clear old content
             repoContainerEl.textContent = "";
         }
-    console.log(language);
 };
 
 // this function will return the user repo in JSON format
